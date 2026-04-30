@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0f0e0c">
+  <title>Spanish Tutor</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ES/EN</div>
+  <button class="nav-btn active" id="nav-study">Study</button>
+  <button class="nav-btn" id="nav-cards">Cards</button>
+</nav>
+
+<main>
+
+  <!-- ── Study Setup ── -->
+  <div id="study-setup">
+    <h2>Study</h2>
+    <div id="study-card-count"></div>
+
+    <div class="panel">
+      <h3>Direction</h3>
+      <div class="radio-group">
+        <label><input type="radio" name="direction" value="es_to_en"> Spanish → English</label>
+        <label><input type="radio" name="direction" value="en_to_es"> English → Spanish</label>
+        <label><input type="radio" name="direction" value="mix" checked> Mixed</label>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Focus</h3>
+      <select id="focus-select">
+        <option value="all">All Cards</option>
+        <option value="weak">Weak Cards</option>
+        <option value="tag">By Tag</option>
+      </select>
+      <div id="tag-row" style="display:none; margin-top:10px">
+        <select id="tag-select"></select>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Cards per Session</h3>
+      <div class="radio-row">
+        <label><input type="radio" name="size" value="10"> 10</label>
+        <label><input type="radio" name="size" value="20" checked> 20</label>
+        <label><input type="radio" name="size" value="50"> 50</label>
+        <label><input type="radio" name="size" value="all" id="size-all-label-input"> <span id="size-all-label">All</span></label>
+        <label><input type="radio" name="size" value="endless"> Endless ∞</label>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="start-btn" style="width:100%;margin-top:4px">Start</button>
+  </div>
+
+  <!-- ── Flashcard Screen ── -->
+  <div id="flashcard-screen" style="display:none">
+    <div class="fc-header">
+      <button class="btn btn-ghost" id="fc-exit">← Exit</button>
+      <span class="fc-counter" id="fc-counter"></span>
+    </div>
+    <progress id="fc-progress" value="0" max="1"></progress>
+
+    <div class="fc-card panel">
+      <div class="fc-lang" id="fc-prompt-lang"></div>
+      <div class="fc-prompt" id="fc-prompt"></div>
+      <div class="fc-tags" id="fc-tags"></div>
+    </div>
+
+    <input type="text" id="fc-answer" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done">
+    <button class="btn btn-primary" id="fc-btn" style="width:100%;margin-top:10px">Check</button>
+    <div id="fc-feedback"></div>
+  </div>
+
+  <!-- ── Summary Screen ── -->
+  <div id="summary-screen" style="display:none">
+    <h2>Session Complete</h2>
+    <div id="summary-text"></div>
+    <button class="btn btn-primary" id="summary-again">Study Again</button>
+  </div>
+
+  <!-- ── Cards View ── -->
+  <div id="cards-view" style="display:none">
+    <h2>Cards</h2>
+    <div class="cards-toolbar">
+      <button class="btn btn-primary" id="add-card-btn">+ Add Card</button>
+      <button class="btn btn-ghost" id="import-btn">Import CSV</button>
+      <button class="btn btn-ghost" id="remove-dupes-btn">Remove Dupes</button>
+      <input type="file" id="csv-input" accept=".csv,text/csv,text/plain,text/*" style="display:none">
+    </div>
+    <div class="cards-filters">
+      <input type="search" id="editor-search" placeholder="Search…">
+      <select id="editor-tag-filter"><option value="">All tags</option></select>
+    </div>
+    <div id="editor-count"></div>
+    <div id="card-list"></div>
+  </div>
+
+</main>
+
+<!-- Card Form Modal -->
+<div class="modal" id="card-form-modal">
+  <div class="modal-inner">
+    <h3 id="card-form-title">Add Card</h3>
+    <div class="form-field">
+      <label>Spanish</label>
+      <input type="text" id="card-form-spanish" autocorrect="off" autocapitalize="off">
+    </div>
+    <div class="form-field">
+      <label>English</label>
+      <input type="text" id="card-form-english" autocorrect="off">
+    </div>
+    <div class="form-field">
+      <label>Tags (comma-separated)</label>
+      <input type="text" id="card-form-tags" placeholder="verb, ar, food…">
+    </div>
+    <div class="form-field">
+      <label>Notes</label>
+      <input type="text" id="card-form-notes">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="card-form-cancel">Cancel</button>
+      <button class="btn btn-primary" id="card-form-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="js/db.js"></script>
+<script src="js/fuzzy.js"></script>
+<script src="js/importer.js"></script>
+<script src="js/seed-data.js"></script>
+<script src="js/flashcard.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
