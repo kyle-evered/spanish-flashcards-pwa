@@ -377,11 +377,52 @@ const SEED_CARDS = [
   { spanish: "roto(a)",            english: "broken",           tags: ["level1","adjective"] },
   { spanish: "abierto(a)",         english: "open",             tags: ["level1","adjective"] },
   { spanish: "cerrado(a)",         english: "closed",           tags: ["level1","adjective"] },
+  // ── El Cuerpo (Body) ──────────────────────────────────────────────────
+  { spanish: "la cabeza",          english: "head",             tags: ["level2","body"] },
+  { spanish: "el ojo",             english: "eye",              tags: ["level2","body"] },
+  { spanish: "la nariz",           english: "nose",             tags: ["level2","body"] },
+  { spanish: "la boca",            english: "mouth",            tags: ["level2","body"] },
+  { spanish: "los labios",         english: "lips",             tags: ["level2","body"] },
+  { spanish: "los dientes",        english: "teeth",            tags: ["level2","body"] },
+  { spanish: "la lengua",          english: "tongue",           tags: ["level2","body"] },
+  { spanish: "la oreja",           english: "ear (outer)",      tags: ["level2","body"] },
+  { spanish: "el oído",            english: "ear (inner)",      tags: ["level2","body"] },
+  { spanish: "la mejilla",         english: "cheek",            tags: ["level2","body"] },
+  { spanish: "el pelo",            english: "hair",             tags: ["level2","body"] },
+  { spanish: "el cabello",         english: "hair (head)",      tags: ["level2","body"] },
+  { spanish: "la ceja",            english: "eyebrow",          tags: ["level2","body"] },
+  { spanish: "las pestañas",       english: "eyelashes",        tags: ["level2","body"] },
+  { spanish: "el mentón",          english: "chin",             tags: ["level2","body"] },
+  { spanish: "la frente",          english: "forehead",         tags: ["level2","body"] },
+  { spanish: "el cuello",          english: "neck",             tags: ["level2","body"] },
+  { spanish: "la nuca",            english: "back of neck",     tags: ["level2","body"] },
+  { spanish: "el hombro",          english: "shoulder",         tags: ["level2","body"] },
+  { spanish: "el pecho",           english: "chest",            tags: ["level2","body"] },
+  { spanish: "la espalda",         english: "back",             tags: ["level2","body"] },
+  { spanish: "el brazo",           english: "arm",              tags: ["level2","body"] },
+  { spanish: "el codo",            english: "elbow",            tags: ["level2","body"] },
+  { spanish: "la muñeca",          english: "wrist",            tags: ["level2","body"] },
+  { spanish: "la mano",            english: "hand",             tags: ["level2","body"] },
+  { spanish: "el dedo",            english: "finger",           tags: ["level2","body"] },
+  { spanish: "la uña",             english: "nail",             tags: ["level2","body"] },
+  { spanish: "el estómago",        english: "stomach",          tags: ["level2","body"] },
+  { spanish: "el ombligo",         english: "belly button",     tags: ["level2","body"] },
+  { spanish: "las caderas",        english: "hips",             tags: ["level2","body"] },
+  { spanish: "la cintura",         english: "waist",            tags: ["level2","body"] },
+  { spanish: "los pompis",         english: "buns",             tags: ["level2","body"] },
+  { spanish: "las nalgas",         english: "buns",             tags: ["level2","body"] },
+  { spanish: "el muslo",           english: "thigh",            tags: ["level2","body"] },
+  { spanish: "la pierna",          english: "leg",              tags: ["level2","body"] },
+  { spanish: "la rodilla",         english: "knee",             tags: ["level2","body"] },
+  { spanish: "el tobillo",         english: "ankle",            tags: ["level2","body"] },
+  { spanish: "el pie",             english: "foot",             tags: ["level2","body"] },
+  { spanish: "el dedo del pie",    english: "toe",              tags: ["level2","body"] },
+  { spanish: "la planta del pie",  english: "bottom of foot",   tags: ["level2","body"] },
 ];
 
 async function seedIfEmpty() {
   const seeded = await DB.getSetting('seeded');
-  if (seeded === 'v4') return;
+  if (seeded === 'v5') return;
 
   const existing = await DB.getAllCards();
   const existingBySpanish = new Map(existing.map(c => [c.spanish.toLowerCase(), c]));
@@ -396,8 +437,8 @@ async function seedIfEmpty() {
     }
   }
 
-  await DB.setSetting('seeded', 'v4');
-  console.log('Seed v4 complete.');
+  await DB.setSetting('seeded', 'v5');
+  console.log('Seed v5 complete.');
 }
 
 window.seedIfEmpty = seedIfEmpty;
