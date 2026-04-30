@@ -80,9 +80,10 @@ const App = (() => {
     const cards = await DB.getAllCards();
     const direction = document.querySelector('input[name="direction"]:checked').value;
     const focus = document.getElementById('focus-select').value;
-    const focusTag = document.getElementById('tag-select').value;
+    const tagSelect = document.getElementById('tag-select');
+    const focusTags = [...tagSelect.selectedOptions].map(o => o.value);
     const size = document.querySelector('input[name="size"]:checked').value;
-    await Flashcard.start({ cards, direction, focus, focusTag, size });
+    await Flashcard.start({ cards, direction, focus, focusTags, size });
   }
 
   async function showCards() {

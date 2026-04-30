@@ -25,7 +25,7 @@ const Flashcard = (() => {
     return pool[pool.length - 1];
   }
 
-  async function start({ cards, direction, focus, focusTag, size }) {
+  async function start({ cards, direction, focus, focusTags, size }) {
     mode = direction;
     let filtered = [...cards];
 
@@ -33,9 +33,9 @@ const Flashcard = (() => {
       const weakIds = new Set(await DB.getWeakCardIds());
       filtered = cards.filter(c => weakIds.has(c.id));
       if (!filtered.length) { App.showToast('No weak cards yet — keep studying!'); return; }
-    } else if (focus === 'tag' && focusTag) {
-      filtered = cards.filter(c => c.tags.includes(focusTag));
-      if (!filtered.length) { App.showToast(`No cards tagged "${focusTag}"`); return; }
+    } else if (focus === 'tag' && focusTags && focusTags.length > 0) {
+      filtered = cards.filter(c => focusTags.some(t => c.tags.includes(t)));
+      if (!filtered.length) { App.showToast('No cards found for selected tags.'); return; }
     }
 
     if (!filtered.length) { App.showToast('No cards to study.'); return; }
