@@ -28,9 +28,15 @@ const App = (() => {
 
     // Study setup
     document.getElementById('start-btn').onclick = startSession;
-    document.getElementById('focus-select').onchange = () => {
-      document.getElementById('tag-row').style.display =
-        document.getElementById('focus-select').value === 'tag' ? '' : 'none';
+    document.getElementById('focus-select').onchange = async () => {
+      const isTag = document.getElementById('focus-select').value === 'tag';
+      document.getElementById('tag-row').style.display = isTag ? '' : 'none';
+      if (isTag) {
+        const cards = await DB.getAllCards();
+        const tags = [...new Set(cards.flatMap(c => c.tags))].sort();
+        const tagSelect = document.getElementById('tag-select');
+        tagSelect.innerHTML = tags.map(t => `<option value="${t}">${t}</option>`).join('');
+      }
     };
 
     // Flashcard
@@ -54,6 +60,7 @@ const App = (() => {
 
     showStudySetup();
     await seedIfEmpty();
+    await showStudySetup(); // refresh after seed so tags populate
   }
 
   async function showStudySetup() {
