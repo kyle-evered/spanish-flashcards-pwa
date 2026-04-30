@@ -71,7 +71,7 @@ const Flashcard = (() => {
     App.setView('flashcard-screen');
     document.getElementById('fc-prompt-lang').textContent = promptLang.toUpperCase();
     document.getElementById('fc-prompt').textContent = prompt;
-    document.getElementById('fc-tags').textContent = card.tags.join('  ') || '';
+    document.getElementById('fc-tags').textContent = '';
     document.getElementById('fc-answer').value = '';
     document.getElementById('fc-answer').placeholder = `Type in ${answerLang}…`;
     document.getElementById('fc-answer').disabled = false;
@@ -98,9 +98,7 @@ const Flashcard = (() => {
     const card = currentCard;
     const expected = showSpanish ? card.english : card.spanish;
     const user = document.getElementById('fc-answer').value.trim();
-    if (!user) return;
-
-    const result = gradeAnswer(user, expected);
+    const result = user ? gradeAnswer(user, expected) : 'incorrect';
     const ms = Date.now() - startTime;
     const correct = result === 'correct' || result === 'close';
 

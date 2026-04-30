@@ -20,11 +20,35 @@ function levenshtein(a, b) {
   return dp[m][n];
 }
 
+function expand(str) {
+  const variants = [str];
+
+  // Strip leading articles: el, la, los, las, un, una
+  const articleMatch = str.match(/^(el|la|los|las|un|una) (.+)$/);
+  if (articleMatch) variants.push(articleMatch[2]);
+
+  // Strip leading "to " for verbs
+  if (str.startsWith('to ')) variants.push(str.slice(3));
+
+  // Expand o(a) ending → both "alto" and "alta"
+  const oaMatch = str.match(/^(.+?)o\(a\)(.*)$/);
+  if (oaMatch) {
+    variants.push(oaMatch[1] + 'o' + oaMatch[2]);
+    variants.push(oaMatch[1] + 'a' + oaMatch[2]);
+  }
+
+  // Also handle plain -o ending → accept -a as well (e.g. user types "alta" for "alto")
+  if (!oaMatch && str.endsWith('o')) {
+    variants.push(str.slice(0, -1) + 'a');
+  }
+
+  return [...new Set(variants)];
+}
+
 function gradeAnswer(userAnswer, expected) {
   const u = normalize(userAnswer);
-  const alternatives = expected.replace(/;/g, ',').split(',').map(s => normalize(s.trim())).filter(Boolean);
-  const stripped = alternatives.map(a => a.startsWith('to ') ? a.slice(3) : a);
-  const all = [...new Set([...alternatives, ...stripped])];
+  const baseAlts = expected.replace(/;/g, ',').split(',').map(s => normalize(s.trim())).filter(Boolean);
+  const all = [...new Set(baseAlts.flatMap(expand))];
 
   if (all.includes(u)) return 'correct';
 
