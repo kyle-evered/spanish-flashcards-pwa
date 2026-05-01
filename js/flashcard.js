@@ -72,6 +72,7 @@ const Flashcard = (() => {
     document.getElementById('fc-prompt-lang').textContent = promptLang.toUpperCase();
     document.getElementById('fc-prompt').textContent = prompt;
     document.getElementById('fc-tags').textContent = '';
+    document.getElementById('fc-stats').textContent = '';
     document.getElementById('fc-answer').value = '';
     document.getElementById('fc-answer').placeholder = `Type in ${answerLang}…`;
     document.getElementById('fc-answer').disabled = false;
@@ -92,6 +93,17 @@ const Flashcard = (() => {
 
     startTime = Date.now();
     setTimeout(() => document.getElementById('fc-answer').focus(), 50);
+
+    const cardId = card.id;
+    DB.getCardStats().then(stats => {
+      if (currentCard.id !== cardId) return;
+      const s = stats[cardId];
+      if (s && s.total > 0) {
+        const pct = Math.round(s.accuracy * 100);
+        document.getElementById('fc-stats').textContent =
+          `${s.total} attempt${s.total !== 1 ? 's' : ''} · ${pct}% accuracy`;
+      }
+    });
   }
 
   async function checkAnswer() {

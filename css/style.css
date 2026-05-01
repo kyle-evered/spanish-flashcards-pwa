@@ -89,6 +89,7 @@ progress::-webkit-progress-value { background: var(--accent); border-radius: 2px
 .fc-lang { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
 .fc-prompt { font-size: 2rem; font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
 .fc-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.fc-stats { font-size: 0.75rem; color: var(--muted); margin-top: 10px; }
 
 #fc-answer { font-size: 1.1rem; margin-bottom: 10px; }
 #fc-btn { width: 100%; padding: 14px; font-size: 1rem; }
