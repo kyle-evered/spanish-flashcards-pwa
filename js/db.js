@@ -150,7 +150,7 @@ async function getCardStats() {
 async function getWeakCardIds(minAttempts = 2) {
   const stats = await getCardStats();
   return Object.entries(stats)
-    .filter(([, s]) => s.total >= minAttempts)
+    .filter(([, s]) => s.total >= minAttempts && s.accuracy < 0.75)
     .sort(([, a], [, b]) => a.accuracy - b.accuracy)
     .map(([id]) => id);
 }
