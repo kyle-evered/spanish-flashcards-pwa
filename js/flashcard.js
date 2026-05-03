@@ -10,9 +10,16 @@ const Flashcard = (() => {
   let startTime = 0;
   let results = [];
   let mode = 'mix';
+  let weakPref = false;
+  let cardStats = {};
 
   function weightedPick() {
     const weights = pool.map(card => {
+      if (weakPref) {
+        const s = cardStats[card.id];
+        const acc = s ? s.accuracy : 0;
+        return 3 - 2 * acc;
+      }
       const acc = sessionAccuracy[card.id];
       return acc === undefined ? 2.0 : (1.0 - acc + 0.1);
     });
@@ -25,7 +32,7 @@ const Flashcard = (() => {
     return pool[pool.length - 1];
   }
 
-  async function start({ cards, direction, weakOnly, focusTags, size }) {
+  async function start({ cards, direction, weakOnly, weakPreferred, focusTags, size }) {
     mode = direction;
     let filtered = [...cards];
 
@@ -41,6 +48,9 @@ const Flashcard = (() => {
     }
 
     if (!filtered.length) { App.showToast('No cards to study.'); return; }
+
+    weakPref = !!weakPreferred;
+    cardStats = weakPref ? await DB.getCardStats() : {};
 
     pool = filtered;
     endless = size === 'endless';
@@ -125,6 +135,15 @@ const Flashcard = (() => {
     const prevCorrect = Math.round((sessionAccuracy[card.id] || 0) * prev);
     sessionCounts[card.id] = prev + 1;
     sessionAccuracy[card.id] = (prevCorrect + (correct ? 1 : 0)) / (prev + 1);
+
+    // Keep cardStats current so weakPref weights evolve within the session
+    if (weakPref) {
+      if (!cardStats[card.id]) cardStats[card.id] = { total: 0, correct: 0, accuracy: 0 };
+      const cs = cardStats[card.id];
+      cs.total++;
+      if (correct) cs.correct++;
+      cs.accuracy = cs.correct / cs.total;
+    }
 
     // Feedback
     const colors = { correct: '#4caf7d', close: '#e0b84a', incorrect: '#e05c5c' };

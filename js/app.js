@@ -70,10 +70,11 @@ const App = (() => {
     const cards = await DB.getAllCards();
     const direction = document.querySelector('input[name="direction"]:checked').value;
     const weakOnly = document.getElementById('weak-toggle').checked;
+    const weakPreferred = document.getElementById('weak-pref-toggle').checked;
     const tagSelect = document.getElementById('tag-select');
     const focusTags = [...tagSelect.selectedOptions].map(o => o.value);
     const size = document.querySelector('input[name="size"]:checked').value;
-    await Flashcard.start({ cards, direction, weakOnly, focusTags, size });
+    await Flashcard.start({ cards, direction, weakOnly, weakPreferred, focusTags, size });
   }
 
   async function showCards() {
