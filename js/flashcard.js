@@ -25,16 +25,18 @@ const Flashcard = (() => {
     return pool[pool.length - 1];
   }
 
-  async function start({ cards, direction, focus, focusTags, size }) {
+  async function start({ cards, direction, weakOnly, focusTags, size }) {
     mode = direction;
     let filtered = [...cards];
 
-    if (focus === 'weak') {
+    if (weakOnly) {
       const weakIds = new Set(await DB.getWeakCardIds());
-      filtered = cards.filter(c => weakIds.has(c.id));
+      filtered = filtered.filter(c => weakIds.has(c.id));
       if (!filtered.length) { App.showToast('No weak cards yet — keep studying!'); return; }
-    } else if (focus === 'tag' && focusTags && focusTags.length > 0) {
-      filtered = cards.filter(c => focusTags.some(t => c.tags.includes(t)));
+    }
+
+    if (focusTags && focusTags.length > 0) {
+      filtered = filtered.filter(c => focusTags.some(t => c.tags.includes(t)));
       if (!filtered.length) { App.showToast('No cards found for selected tags.'); return; }
     }
 
