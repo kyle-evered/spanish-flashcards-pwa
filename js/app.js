@@ -28,16 +28,6 @@ const App = (() => {
 
     // Study setup
     document.getElementById('start-btn').onclick = startSession;
-    document.getElementById('focus-select').onchange = async () => {
-      const isTag = document.getElementById('focus-select').value === 'tag';
-      document.getElementById('tag-row').style.display = isTag ? '' : 'none';
-      if (isTag) {
-        const cards = await DB.getAllCards();
-        const tags = [...new Set(cards.flatMap(c => c.tags))].sort();
-        const tagSelect = document.getElementById('tag-select');
-        tagSelect.innerHTML = tags.map(t => `<option value="${t}">${t}</option>`).join('');
-      }
-    };
 
     // Flashcard
     document.getElementById('fc-exit').onclick = () => setView('study-setup');
@@ -79,11 +69,12 @@ const App = (() => {
   async function startSession() {
     const cards = await DB.getAllCards();
     const direction = document.querySelector('input[name="direction"]:checked').value;
-    const focus = document.getElementById('focus-select').value;
+    const weakOnly = document.getElementById('weak-toggle').checked;
+    const weakPreferred = document.getElementById('weak-pref-toggle').checked;
     const tagSelect = document.getElementById('tag-select');
     const focusTags = [...tagSelect.selectedOptions].map(o => o.value);
     const size = document.querySelector('input[name="size"]:checked').value;
-    await Flashcard.start({ cards, direction, focus, focusTags, size });
+    await Flashcard.start({ cards, direction, weakOnly, weakPreferred, focusTags, size });
   }
 
   async function showCards() {

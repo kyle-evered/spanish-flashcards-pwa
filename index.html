@@ -35,14 +35,14 @@
 
     <div class="panel">
       <h3>Focus</h3>
-      <select id="focus-select">
-        <option value="all">All Cards</option>
-        <option value="weak">Weak Cards</option>
-        <option value="tag">By Tag</option>
-      </select>
-      <div id="tag-row" style="display:none; margin-top:10px">
+      <div class="radio-group">
+        <label><input type="checkbox" id="weak-toggle"> Weak cards only (&lt;75%)</label>
+        <label><input type="checkbox" id="weak-pref-toggle"> Prefer weak cards</label>
+      </div>
+      <div style="margin-top:12px">
+        <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Tags</div>
         <select id="tag-select" multiple size="5" style="height:auto"></select>
-        <div style="font-size:0.75rem;color:gray;margin-top:4px">Hold Ctrl (PC) or tap to select multiple</div>
+        <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">Select tags to filter · hold Ctrl to multi-select</div>
       </div>
     </div>
 
