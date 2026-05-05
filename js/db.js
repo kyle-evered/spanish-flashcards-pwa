@@ -1,5 +1,5 @@
 const DB_NAME = 'SpanishTutor';
-const DB_VERSION = 2;
+const DB_VERSION = 1;
 
 let _db = null;
 
@@ -19,9 +19,6 @@ function openDB() {
       }
       if (!db.objectStoreNames.contains('settings')) {
         db.createObjectStore('settings', { keyPath: 'key' });
-      }
-      if (!db.objectStoreNames.contains('feedback')) {
-        db.createObjectStore('feedback', { keyPath: 'id', autoIncrement: true });
       }
     };
     req.onsuccess = e => { _db = e.target.result; resolve(_db); };
@@ -160,20 +157,6 @@ async function getWeakCardIds(minAttempts = 2) {
 
 // ── Settings ───────────────────────────────────────────────────────────────
 
-async function addFeedback(text) {
-  await openDB();
-  return new Promise((resolve, reject) => {
-    const req = tx('feedback', 'readwrite').add({ text, ts: new Date().toISOString() });
-    req.onsuccess = () => resolve();
-    req.onerror = () => reject(req.error);
-  });
-}
-
-async function getAllFeedback() {
-  await openDB();
-  return all(tx('feedback'));
-}
-
 async function getSetting(key) {
   await openDB();
   return new Promise((resolve, reject) => {
@@ -191,6 +174,5 @@ async function setSetting(key, value) {
 window.DB = {
   getAllCards, createCard, updateCard, deleteCard, bulkCreateCards, removeDuplicates,
   recordResult, getCardStats, getWeakCardIds,
-  addFeedback, getAllFeedback,
   getSetting, setSetting
 };

@@ -58,9 +58,6 @@
     </div>
 
     <button class="btn btn-primary" id="start-btn" style="width:100%;margin-top:4px">Start</button>
-    <div style="text-align:center;margin-top:20px">
-      <button class="btn btn-ghost" id="feedback-btn" style="font-size:0.85rem;color:var(--muted)">Leave feedback</button>
-    </div>
   </div>
 
   <!-- ── Flashcard Screen ── -->
@@ -138,40 +135,12 @@
 
 <div id="toast"></div>
 
-<!-- Feedback Modal -->
-<div class="modal" id="feedback-modal">
-  <div class="modal-inner">
-    <h3>Leave Feedback</h3>
-    <div class="form-field">
-      <label>Your suggestion or request</label>
-      <textarea id="feedback-text" rows="5" style="resize:vertical" placeholder="What would you like to see changed or added?"></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="feedback-cancel">Cancel</button>
-      <button class="btn btn-primary" id="feedback-submit">Submit</button>
-    </div>
-  </div>
-</div>
-
-<!-- Admin Modal -->
-<div class="modal" id="admin-modal">
-  <div class="modal-inner" style="max-height:80vh;display:flex;flex-direction:column">
-    <h3>Feedback</h3>
-    <div id="admin-feedback-list" style="overflow-y:auto;flex:1;margin:12px 0"></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="admin-download">Download .txt</button>
-      <button class="btn btn-primary" id="admin-close">Close</button>
-    </div>
-  </div>
-</div>
-
 <script src="js/db.js"></script>
 <script src="js/fuzzy.js"></script>
 <script src="js/importer.js"></script>
 <script src="js/seed-data.js"></script>
 <script src="js/flashcard.js"></script>
 <script src="js/editor.js"></script>
-<script src="js/feedback.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

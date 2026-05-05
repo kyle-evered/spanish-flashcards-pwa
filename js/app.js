@@ -26,8 +26,6 @@ const App = (() => {
     document.getElementById('nav-study').onclick = () => { setNav('nav-study'); showStudySetup(); };
     document.getElementById('nav-cards').onclick = () => { setNav('nav-cards'); showCards(); };
 
-    Feedback.init();
-
     // Study setup
     document.getElementById('start-btn').onclick = startSession;
 
