@@ -433,11 +433,43 @@ const SEED_CARDS = [
   { spanish: "tener razón",        english: "to be correct",     tags: ["level2","verb","tener"] },
   { spanish: "tener suerte",       english: "to be lucky",       tags: ["level2","verb","tener"] },
   { spanish: "tener éxito",        english: "to be successful",  tags: ["level2","verb","tener"] },
+
+  // ── Family (individual forms) ────────────────────────────────────────────
+  { spanish: "madre",              english: "mother",            tags: ["level2","family"] },
+  { spanish: "padre",              english: "father",            tags: ["level2","family"] },
+  { spanish: "hijo",               english: "son",               tags: ["level2","family"] },
+  { spanish: "hija",               english: "daughter",          tags: ["level2","family"] },
+  { spanish: "hermano",            english: "brother",           tags: ["level2","family"] },
+  { spanish: "hermana",            english: "sister",            tags: ["level2","family"] },
+  { spanish: "tío",                english: "uncle",             tags: ["level2","family"] },
+  { spanish: "tía",                english: "aunt",              tags: ["level2","family"] },
+  { spanish: "sobrino",            english: "nephew",            tags: ["level2","family"] },
+  { spanish: "sobrina",            english: "niece",             tags: ["level2","family"] },
+  { spanish: "esposo",             english: "husband",           tags: ["level2","family"] },
+  { spanish: "esposa",             english: "wife",              tags: ["level2","family"] },
+  { spanish: "abuelo",             english: "grandfather",       tags: ["level2","family"] },
+  { spanish: "abuela",             english: "grandmother",       tags: ["level2","family"] },
+  { spanish: "bisabuelo",          english: "great grandfather", tags: ["level2","family"] },
+  { spanish: "bisabuela",          english: "great grandmother", tags: ["level2","family"] },
+  { spanish: "nieto",              english: "grandson",          tags: ["level2","family"] },
+  { spanish: "nieta",              english: "granddaughter",     tags: ["level2","family"] },
+  { spanish: "suegro",             english: "father-in-law",     tags: ["level2","family"] },
+  { spanish: "suegra",             english: "mother-in-law",     tags: ["level2","family"] },
+  { spanish: "cuñado",             english: "brother-in-law",    tags: ["level2","family"] },
+  { spanish: "cuñada",             english: "sister-in-law",     tags: ["level2","family"] },
+  { spanish: "padrastro",          english: "step father",       tags: ["level2","family"] },
+  { spanish: "madrastra",          english: "step mother",       tags: ["level2","family"] },
+  { spanish: "primo(a)",           english: "cousin",            tags: ["level2","family"] },
+  { spanish: "yerno",              english: "son-in-law",        tags: ["level2","family"] },
+  { spanish: "nuera",              english: "daughter-in-law",   tags: ["level2","family"] },
+  { spanish: "hijastro",           english: "step-son",          tags: ["level2","family"] },
+  { spanish: "hijastra",           english: "step-daughter",     tags: ["level2","family"] },
+  { spanish: "los parientes",      english: "relatives",         tags: ["level2","family"] },
 ];
 
 async function seedIfEmpty() {
   const seeded = await DB.getSetting('seeded');
-  if (seeded === 'v8') return;
+  if (seeded === 'v9') return;
 
   const existing = await DB.getAllCards();
   const existingBySpanish = new Map(existing.map(c => [c.spanish.toLowerCase(), c]));
@@ -452,8 +484,8 @@ async function seedIfEmpty() {
     }
   }
 
-  await DB.setSetting('seeded', 'v8');
-  console.log('Seed v8 complete.');
+  await DB.setSetting('seeded', 'v9');
+  console.log('Seed v9 complete.');
 }
 
 window.seedIfEmpty = seedIfEmpty;
