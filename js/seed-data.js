@@ -420,24 +420,24 @@ const SEED_CARDS = [
   { spanish: "la planta del pie",  english: "bottom of foot",   tags: ["level2","body"] },
 
   // ── Tener expressions ────────────────────────────────────────────────
-  { spanish: "tener",              english: "to have",           tags: ["verb","tener"] },
-  { spanish: "ir",                 english: "to go",             tags: ["verb"] },
-  { spanish: "tener hambre",       english: "to be hungry",      tags: ["verb","tener"] },
-  { spanish: "tener sed",          english: "to be thirsty",     tags: ["verb","tener"] },
-  { spanish: "tener frío",         english: "to be cold",        tags: ["verb","tener"] },
-  { spanish: "tener calor",        english: "to be hot",         tags: ["verb","tener"] },
-  { spanish: "tener prisa",        english: "to be in a hurry",  tags: ["verb","tener"] },
-  { spanish: "tener miedo",        english: "to be afraid",      tags: ["verb","tener"] },
-  { spanish: "tener sueño",        english: "to be sleepy",      tags: ["verb","tener"] },
-  { spanish: "tener ganas de",     english: "to feel like",      tags: ["verb","tener"] },
-  { spanish: "tener razón",        english: "to be correct",     tags: ["verb","tener"] },
-  { spanish: "tener suerte",       english: "to be lucky",       tags: ["verb","tener"] },
-  { spanish: "tener éxito",        english: "to be successful",  tags: ["verb","tener"] },
+  { spanish: "tener",              english: "to have",           tags: ["level2","verb","tener"] },
+  { spanish: "ir",                 english: "to go",             tags: ["level2","verb"] },
+  { spanish: "tener hambre",       english: "to be hungry",      tags: ["level2","verb","tener"] },
+  { spanish: "tener sed",          english: "to be thirsty",     tags: ["level2","verb","tener"] },
+  { spanish: "tener frío",         english: "to be cold",        tags: ["level2","verb","tener"] },
+  { spanish: "tener calor",        english: "to be hot",         tags: ["level2","verb","tener"] },
+  { spanish: "tener prisa",        english: "to be in a hurry",  tags: ["level2","verb","tener"] },
+  { spanish: "tener miedo",        english: "to be afraid",      tags: ["level2","verb","tener"] },
+  { spanish: "tener sueño",        english: "to be sleepy",      tags: ["level2","verb","tener"] },
+  { spanish: "tener ganas de",     english: "to feel like",      tags: ["level2","verb","tener"] },
+  { spanish: "tener razón",        english: "to be correct",     tags: ["level2","verb","tener"] },
+  { spanish: "tener suerte",       english: "to be lucky",       tags: ["level2","verb","tener"] },
+  { spanish: "tener éxito",        english: "to be successful",  tags: ["level2","verb","tener"] },
 ];
 
 async function seedIfEmpty() {
   const seeded = await DB.getSetting('seeded');
-  if (seeded === 'v7') return;
+  if (seeded === 'v8') return;
 
   const existing = await DB.getAllCards();
   const existingBySpanish = new Map(existing.map(c => [c.spanish.toLowerCase(), c]));
@@ -452,8 +452,8 @@ async function seedIfEmpty() {
     }
   }
 
-  await DB.setSetting('seeded', 'v7');
-  console.log('Seed v7 complete.');
+  await DB.setSetting('seeded', 'v8');
+  console.log('Seed v8 complete.');
 }
 
 window.seedIfEmpty = seedIfEmpty;
