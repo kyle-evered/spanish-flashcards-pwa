@@ -2,7 +2,7 @@ function normalize(str) {
   return str
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[̀-ͯ]/g, '')
     .replace(/[¿¡]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
@@ -29,6 +29,9 @@ function expand(str) {
 
   // Strip leading "to " for verbs
   if (str.startsWith('to ')) variants.push(str.slice(3));
+
+  // Strip leading "to be " for tener expressions (e.g. "to be hungry" → "hungry")
+  if (str.startsWith('to be ')) variants.push(str.slice(6));
 
   // Expand o(a) ending → both "alto" and "alta"
   const oaMatch = str.match(/^(.+?)o\(a\)(.*)$/);
