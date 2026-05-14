@@ -14,6 +14,7 @@
 <nav>
   <div class="nav-logo">ES/EN</div>
   <button class="nav-btn active" id="nav-study">Study</button>
+  <button class="nav-btn" id="nav-conjugate">Conjugate</button>
   <button class="nav-btn" id="nav-cards">Cards</button>
 </nav>
 
@@ -87,6 +88,54 @@
     <button class="btn btn-primary" id="summary-again">Study Again</button>
   </div>
 
+  <!-- ── Conjugate Setup ── -->
+  <div id="conjugate-setup" style="display:none">
+    <h2>Conjugate</h2>
+
+    <div class="panel">
+      <h3>Verbs</h3>
+      <select id="conj-verb-select" multiple size="8" style="height:auto"></select>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">Hold Ctrl to multi-select · leave blank for all</div>
+    </div>
+
+    <div class="panel">
+      <h3>Cards per Session</h3>
+      <div class="radio-row">
+        <label><input type="radio" name="conj-size" value="10" checked> 10</label>
+        <label><input type="radio" name="conj-size" value="20"> 20</label>
+        <label><input type="radio" name="conj-size" value="50"> 50</label>
+        <label><input type="radio" name="conj-size" value="all"> All</label>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="conj-start-btn" style="width:100%;margin-top:4px">Start</button>
+  </div>
+
+  <!-- ── Conjugate Screen ── -->
+  <div id="conjugate-screen" style="display:none">
+    <div class="fc-header">
+      <button class="btn btn-ghost" id="conj-exit">← Exit</button>
+      <span class="fc-counter" id="conj-counter"></span>
+    </div>
+    <progress id="conj-progress" value="0" max="1"></progress>
+
+    <div class="fc-card panel">
+      <div class="fc-lang" id="conj-verb-display"></div>
+      <div class="fc-prompt" id="conj-pronoun"></div>
+    </div>
+
+    <input type="text" id="conj-answer" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" placeholder="Type the conjugated form…">
+    <button class="btn btn-primary" id="conj-btn" style="width:100%;margin-top:10px">Check</button>
+    <div id="conj-feedback"></div>
+  </div>
+
+  <!-- ── Conjugate Summary ── -->
+  <div id="conjugate-summary" style="display:none">
+    <h2>Session Complete</h2>
+    <div id="conj-summary-text"></div>
+    <button class="btn btn-primary" id="conj-again">Practice Again</button>
+  </div>
+
   <!-- ── Cards View ── -->
   <div id="cards-view" style="display:none">
     <h2>Cards</h2>
@@ -139,7 +188,9 @@
 <script src="js/fuzzy.js"></script>
 <script src="js/importer.js"></script>
 <script src="js/seed-data.js"></script>
+<script src="js/conjugation-data.js"></script>
 <script src="js/flashcard.js"></script>
+<script src="js/conjugate.js"></script>
 <script src="js/editor.js"></script>
 <script src="js/app.js"></script>
 </body>

@@ -419,9 +419,45 @@ const SEED_CARDS = [
   { spanish: "el dedo del pie",    english: "toe",              tags: ["level2","body"] },
   { spanish: "la planta del pie",  english: "bottom of foot",   tags: ["level2","body"] },
 
+  // ── Irregular Verbs ──────────────────────────────────────────────────
+  // Irregular in yo only
+  { spanish: "conocer",            english: "to know (a person or place)", tags: ["level2","verb","irregular verb"] },
+  { spanish: "dar",                english: "to give",           tags: ["level2","verb","irregular verb"] },
+  { spanish: "hacer",              english: "to do, to make",    tags: ["level2","verb","irregular verb"] },
+  { spanish: "poner",              english: "to put, to place",  tags: ["level2","verb","irregular verb"] },
+  { spanish: "saber",              english: "to know (information)", tags: ["level2","verb","irregular verb"] },
+  { spanish: "salir",              english: "to leave, to go out", tags: ["level2","verb","irregular verb"] },
+  { spanish: "traer",              english: "to bring",          tags: ["level2","verb","irregular verb"] },
+  { spanish: "ver",                english: "to see, to watch",  tags: ["level2","verb","irregular verb"] },
+  // Highly irregular
+  { spanish: "decir",              english: "to say, to tell",   tags: ["level2","verb","irregular verb"] },
+  { spanish: "venir",              english: "to come",           tags: ["level2","verb","irregular verb"] },
+  // e → ie stem change
+  { spanish: "preferir",           english: "to prefer",         tags: ["level2","verb","irregular verb"] },
+  { spanish: "querer",             english: "to want, to love",  tags: ["level2","verb","irregular verb"] },
+  { spanish: "cerrar",             english: "to close",          tags: ["level2","verb","irregular verb"] },
+  { spanish: "pensar",             english: "to think",          tags: ["level2","verb","irregular verb"] },
+  { spanish: "comenzar",           english: "to begin",          tags: ["level2","verb","irregular verb"] },
+  { spanish: "empezar",            english: "to begin",          tags: ["level2","verb","irregular verb"] },
+  { spanish: "entender",           english: "to understand",     tags: ["level2","verb","irregular verb"] },
+  { spanish: "perder",             english: "to lose",           tags: ["level2","verb","irregular verb"] },
+  // o → ue stem change
+  { spanish: "recordar",           english: "to remember",       tags: ["level2","verb","irregular verb"] },
+  { spanish: "jugar",              english: "to play",           tags: ["level2","verb","irregular verb"] },
+  { spanish: "devolver",           english: "to return (something)", tags: ["level2","verb","irregular verb"] },
+  { spanish: "dormir",             english: "to sleep",          tags: ["level2","verb","irregular verb"] },
+  { spanish: "volver",             english: "to return",         tags: ["level2","verb","irregular verb"] },
+  { spanish: "poder",              english: "to be able to, can", tags: ["level2","verb","irregular verb"] },
+  // e → i stem change
+  { spanish: "servir",             english: "to serve",          tags: ["level2","verb","irregular verb"] },
+  { spanish: "pedir",              english: "to ask for",        tags: ["level2","verb","irregular verb"] },
+  { spanish: "seguir",             english: "to follow, to continue", tags: ["level2","verb","irregular verb"] },
+  { spanish: "conseguir",          english: "to get",            tags: ["level2","verb","irregular verb"] },
+  { spanish: "repetir",            english: "to repeat",         tags: ["level2","verb","irregular verb"] },
+
   // ── Tener expressions ────────────────────────────────────────────────
-  { spanish: "tener",              english: "to have",           tags: ["level2","verb","tener"] },
-  { spanish: "ir",                 english: "to go",             tags: ["level2","verb"] },
+  { spanish: "tener",              english: "to have",           tags: ["level2","verb","tener","irregular verb"] },
+  { spanish: "ir",                 english: "to go",             tags: ["level2","verb","irregular verb"] },
   { spanish: "tener hambre",       english: "to be hungry",      tags: ["level2","verb","tener"] },
   { spanish: "tener sed",          english: "to be thirsty",     tags: ["level2","verb","tener"] },
   { spanish: "tener frío",         english: "to be cold",        tags: ["level2","verb","tener"] },
@@ -469,7 +505,7 @@ const SEED_CARDS = [
 
 async function seedIfEmpty() {
   const seeded = await DB.getSetting('seeded');
-  if (seeded === 'v9') return;
+  if (seeded === 'v10') return;
 
   const existing = await DB.getAllCards();
   const existingBySpanish = new Map(existing.map(c => [c.spanish.toLowerCase(), c]));
@@ -484,8 +520,8 @@ async function seedIfEmpty() {
     }
   }
 
-  await DB.setSetting('seeded', 'v9');
-  console.log('Seed v9 complete.');
+  await DB.setSetting('seeded', 'v10');
+  console.log('Seed v10 complete.');
 }
 
 window.seedIfEmpty = seedIfEmpty;

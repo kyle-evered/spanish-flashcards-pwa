@@ -1,5 +1,9 @@
 const App = (() => {
-  const views = ['study-setup', 'flashcard-screen', 'summary-screen', 'cards-view'];
+  const views = [
+    'study-setup', 'flashcard-screen', 'summary-screen',
+    'conjugate-setup', 'conjugate-screen', 'conjugate-summary',
+    'cards-view'
+  ];
 
   function setView(id) {
     views.forEach(v => document.getElementById(v).style.display = v === id ? '' : 'none');
@@ -24,16 +28,22 @@ const App = (() => {
 
     // Nav
     document.getElementById('nav-study').onclick = () => { setNav('nav-study'); showStudySetup(); };
+    document.getElementById('nav-conjugate').onclick = () => { setNav('nav-conjugate'); showConjugateSetup(); };
     document.getElementById('nav-cards').onclick = () => { setNav('nav-cards'); showCards(); };
 
     // Study setup
     document.getElementById('start-btn').onclick = startSession;
 
     // Flashcard
-    document.getElementById('fc-exit').onclick = () => setView('study-setup');
+    document.getElementById('fc-exit').onclick = () => { setNav('nav-study'); showStudySetup(); };
 
     // Summary
     document.getElementById('summary-again').onclick = () => setView('study-setup');
+
+    // Conjugate
+    document.getElementById('conj-start-btn').onclick = Conjugate.start;
+    document.getElementById('conj-exit').onclick = () => setView('conjugate-setup');
+    document.getElementById('conj-again').onclick = () => setView('conjugate-setup');
 
     // Cards
     document.getElementById('add-card-btn').onclick = Editor.showAddForm;
@@ -64,6 +74,11 @@ const App = (() => {
 
     const total = cards.length;
     document.getElementById('size-all-label').textContent = `All (${total})`;
+  }
+
+  function showConjugateSetup() {
+    setView('conjugate-setup');
+    Conjugate.load();
   }
 
   async function startSession() {
