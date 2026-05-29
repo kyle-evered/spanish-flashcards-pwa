@@ -13,6 +13,23 @@ const Flashcard = (() => {
   let weakPref = false;
   let cardStats = {};
 
+  // Mastery mode
+  let mastery = false;
+  let masteryQueue = [];
+  let masteryQueueIndex = 0;
+  let masteryRound = 0;
+  let masteryCorrectThisRound = new Set();
+  let masteryInitialCount = 0;
+  let masteryTotalMastered = 0;
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
   function weightedPick() {
     const weights = pool.map(card => {
       if (weakPref) {
@@ -32,7 +49,7 @@ const Flashcard = (() => {
     return pool[pool.length - 1];
   }
 
-  async function start({ cards, direction, weakOnly, weakPreferred, focusTags, size }) {
+  async function start({ cards, direction, weakOnly, weakPreferred, focusTags, size, mastery: isMastery }) {
     mode = direction;
     let filtered = [...cards];
 
@@ -52,18 +69,54 @@ const Flashcard = (() => {
     weakPref = !!weakPreferred;
     cardStats = weakPref ? await DB.getCardStats() : {};
 
+    mastery = !!isMastery;
+    answeredCount = 0;
+    results = [];
+
+    if (mastery) {
+      const sizeLimit = (size === 'all' || size === 'endless')
+        ? filtered.length
+        : Math.min(parseInt(size) || 20, filtered.length);
+      const deck = shuffle([...filtered]).slice(0, sizeLimit);
+      masteryInitialCount = deck.length;
+      masteryQueue = deck;
+      masteryQueueIndex = 0;
+      masteryRound = 1;
+      masteryCorrectThisRound = new Set();
+      masteryTotalMastered = 0;
+      advance();
+      return;
+    }
+
     pool = filtered;
     endless = size === 'endless';
     sessionLimit = size === 'all' ? filtered.length : Math.min(parseInt(size) || 20, filtered.length);
-    answeredCount = 0;
-    results = [];
     sessionAccuracy = {};
     sessionCounts = {};
-
     advance();
   }
 
   function advance() {
+    if (mastery) {
+      if (masteryQueueIndex >= masteryQueue.length) {
+        // End of round: remove mastered cards
+        const remaining = masteryQueue.filter(c => !masteryCorrectThisRound.has(c.id));
+        masteryTotalMastered += masteryCorrectThisRound.size;
+        if (remaining.length === 0) {
+          showSummary();
+          return;
+        }
+        masteryQueue = shuffle(remaining);
+        masteryQueueIndex = 0;
+        masteryRound++;
+        masteryCorrectThisRound = new Set();
+      }
+      currentCard = masteryQueue[masteryQueueIndex++];
+      showSpanish = (mode === 'es_to_en') || (mode === 'mix' && answeredCount % 2 === 0);
+      renderCard();
+      return;
+    }
+
     if (!endless && answeredCount >= sessionLimit) {
       showSummary();
       return;
@@ -78,7 +131,6 @@ const Flashcard = (() => {
     const prompt = showSpanish ? card.spanish : card.english;
     const promptLang = showSpanish ? 'Spanish' : 'English';
     const answerLang = showSpanish ? 'English' : 'Spanish';
-    const progress = endless ? '' : `${answeredCount} / ${sessionLimit}`;
 
     App.setView('flashcard-screen');
     document.getElementById('fc-prompt-lang').textContent = promptLang.toUpperCase();
@@ -88,20 +140,35 @@ const Flashcard = (() => {
     document.getElementById('fc-answer').value = '';
     document.getElementById('fc-answer').placeholder = `Type in ${answerLang}…`;
     document.getElementById('fc-answer').disabled = false;
-    document.getElementById('fc-counter').textContent = endless ? `${answeredCount} answered` : progress;
     document.getElementById('fc-feedback').innerHTML = '';
     document.getElementById('fc-btn').textContent = 'Check';
     document.getElementById('fc-btn').onclick = () => checkAnswer();
+
+    if (mastery) {
+      document.getElementById('fc-counter').textContent =
+        `Round ${masteryRound} · ${masteryQueueIndex} / ${masteryQueue.length}`;
+    } else {
+      document.getElementById('fc-counter').textContent =
+        endless ? `${answeredCount} answered` : `${answeredCount} / ${sessionLimit}`;
+    }
 
     const answerEl = document.getElementById('fc-answer');
     answerEl.setAttribute('enterkeyhint', 'done');
     answerEl.onkeydown = null;
     answerEl.onkeyup = e => { if (e.key === 'Enter') checkAnswer(); };
 
-    // Progress bar
     const bar = document.getElementById('fc-progress');
-    if (endless) { bar.style.display = 'none'; }
-    else { bar.style.display = ''; bar.value = answeredCount; bar.max = sessionLimit; }
+    if (mastery) {
+      bar.style.display = '';
+      bar.value = masteryTotalMastered;
+      bar.max = masteryInitialCount;
+    } else if (endless) {
+      bar.style.display = 'none';
+    } else {
+      bar.style.display = '';
+      bar.value = answeredCount;
+      bar.max = sessionLimit;
+    }
 
     startTime = Date.now();
     setTimeout(() => document.getElementById('fc-answer').focus(), 50);
@@ -130,13 +197,16 @@ const Flashcard = (() => {
     results.push({ card_id: card.id, correct });
     answeredCount++;
 
-    // Update session accuracy
+    if (mastery && correct) {
+      masteryCorrectThisRound.add(card.id);
+    }
+
+    // Update session accuracy (used by weakPref weighting)
     const prev = sessionCounts[card.id] || 0;
     const prevCorrect = Math.round((sessionAccuracy[card.id] || 0) * prev);
     sessionCounts[card.id] = prev + 1;
     sessionAccuracy[card.id] = (prevCorrect + (correct ? 1 : 0)) / (prev + 1);
 
-    // Keep cardStats current so weakPref weights evolve within the session
     if (weakPref) {
       if (!cardStats[card.id]) cardStats[card.id] = { total: 0, correct: 0, accuracy: 0 };
       const cs = cardStats[card.id];
@@ -145,7 +215,6 @@ const Flashcard = (() => {
       cs.accuracy = cs.correct / cs.total;
     }
 
-    // Feedback
     const colors = { correct: '#4caf7d', close: '#e0b84a', incorrect: '#e05c5c' };
     const labels = { correct: '✓ Correct', close: '≈ Close', incorrect: '✗ Incorrect' };
     document.getElementById('fc-feedback').innerHTML = `
@@ -167,7 +236,13 @@ const Flashcard = (() => {
     const correct = results.filter(r => r.correct).length;
     const pct = total ? Math.round(correct / total * 100) : 0;
     App.setView('summary-screen');
-    document.getElementById('summary-text').textContent = `${correct} / ${total} correct (${pct}%)`;
+    if (mastery) {
+      document.getElementById('summary-text').innerHTML =
+        `<p>${masteryInitialCount} cards mastered in ${masteryRound} round${masteryRound !== 1 ? 's' : ''}</p>` +
+        `<p style="margin-top:6px;color:var(--muted)">${correct} / ${total} correct overall (${pct}%)</p>`;
+    } else {
+      document.getElementById('summary-text').textContent = `${correct} / ${total} correct (${pct}%)`;
+    }
   }
 
   return { start };
