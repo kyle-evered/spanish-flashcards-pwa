@@ -68,20 +68,13 @@ const App = (() => {
   async function updateAllLabel() {
     const tagSelect = document.getElementById('tag-select');
     const focusTags = [...tagSelect.selectedOptions].map(o => o.value);
-    const weakOnly = document.getElementById('weak-toggle').checked;
 
-    let filtered = [...allCardsCache];
-    if (weakOnly) {
-      const weakIds = new Set(await DB.getWeakCardIds());
-      filtered = filtered.filter(c => weakIds.has(c.id));
-    }
-    if (focusTags.length > 0) {
-      filtered = filtered.filter(c => focusTags.some(t => c.tags.includes(t)));
-    }
+    let tagFiltered = focusTags.length > 0
+      ? allCardsCache.filter(c => focusTags.some(t => c.tags.includes(t)))
+      : [...allCardsCache];
 
-    const count = filtered.length;
-    document.getElementById('study-card-count').textContent = `${count} cards available`;
-    document.getElementById('size-all-label').textContent = `All (${count})`;
+    document.getElementById('study-card-count').textContent = `${tagFiltered.length} cards available`;
+    document.getElementById('size-all-label').textContent = `All (${tagFiltered.length})`;
   }
 
   async function showStudySetup() {
@@ -93,7 +86,6 @@ const App = (() => {
     tagSelect.innerHTML = tags.map(t => `<option value="${t}">${t}</option>`).join('');
 
     tagSelect.onchange = updateAllLabel;
-    document.getElementById('weak-toggle').onchange = updateAllLabel;
 
     await updateAllLabel();
   }
