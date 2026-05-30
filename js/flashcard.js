@@ -152,6 +152,7 @@ const Flashcard = (() => {
         endless ? `${answeredCount} answered` : `${answeredCount} / ${sessionLimit}`;
     }
 
+    document.onkeyup = null;
     const answerEl = document.getElementById('fc-answer');
     answerEl.setAttribute('enterkeyhint', 'done');
     answerEl.onkeydown = null;
@@ -228,10 +229,12 @@ const Flashcard = (() => {
     document.getElementById('fc-btn').onclick = () => advance();
     const ans = document.getElementById('fc-answer');
     ans.onkeydown = null;
-    ans.onkeyup = e => { if (e.key === 'Enter') advance(); };
+    ans.onkeyup = null;
+    document.onkeyup = e => { if (e.key === 'Enter') advance(); };
   }
 
   function showSummary() {
+    document.onkeyup = null;
     const total = results.length;
     const correct = results.filter(r => r.correct).length;
     const pct = total ? Math.round(correct / total * 100) : 0;

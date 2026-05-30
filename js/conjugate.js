@@ -61,6 +61,7 @@ const Conjugate = (() => {
     document.getElementById('conj-btn').onclick = handleBtn;
     answered = false;
 
+    document.onkeyup = null;
     const answerEl = document.getElementById('conj-answer');
     answerEl.onkeyup = e => { if (e.key === 'Enter') handleBtn(); };
     setTimeout(() => answerEl.focus(), 50);
@@ -92,10 +93,12 @@ const Conjugate = (() => {
     answered = true;
 
     const answerEl = document.getElementById('conj-answer');
-    answerEl.onkeyup = e => { if (e.key === 'Enter') handleBtn(); };
+    answerEl.onkeyup = null;
+    document.onkeyup = e => { if (e.key === 'Enter') handleBtn(); };
   }
 
   function showSummary() {
+    document.onkeyup = null;
     App.setView('conjugate-summary');
     const pct = queue.length ? Math.round(correct / queue.length * 100) : 0;
     document.getElementById('conj-summary-text').innerHTML =

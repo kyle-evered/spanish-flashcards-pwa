@@ -35,14 +35,14 @@ const App = (() => {
     document.getElementById('start-btn').onclick = startSession;
 
     // Flashcard
-    document.getElementById('fc-exit').onclick = () => { setNav('nav-study'); showStudySetup(); };
+    document.getElementById('fc-exit').onclick = () => { document.onkeyup = null; setNav('nav-study'); showStudySetup(); };
 
     // Summary
     document.getElementById('summary-again').onclick = () => setView('study-setup');
 
     // Conjugate
     document.getElementById('conj-start-btn').onclick = Conjugate.start;
-    document.getElementById('conj-exit').onclick = () => setView('conjugate-setup');
+    document.getElementById('conj-exit').onclick = () => { document.onkeyup = null; setView('conjugate-setup'); };
     document.getElementById('conj-again').onclick = () => setView('conjugate-setup');
 
     // Cards
