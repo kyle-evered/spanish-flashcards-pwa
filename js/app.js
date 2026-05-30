@@ -63,17 +63,39 @@ const App = (() => {
     await showStudySetup(); // refresh after seed so tags populate
   }
 
+  let allCardsCache = [];
+
+  async function updateAllLabel() {
+    const tagSelect = document.getElementById('tag-select');
+    const focusTags = [...tagSelect.selectedOptions].map(o => o.value);
+    const weakOnly = document.getElementById('weak-toggle').checked;
+
+    let filtered = [...allCardsCache];
+    if (weakOnly) {
+      const weakIds = new Set(await DB.getWeakCardIds());
+      filtered = filtered.filter(c => weakIds.has(c.id));
+    }
+    if (focusTags.length > 0) {
+      filtered = filtered.filter(c => focusTags.some(t => c.tags.includes(t)));
+    }
+
+    const count = filtered.length;
+    document.getElementById('study-card-count').textContent = `${count} cards available`;
+    document.getElementById('size-all-label').textContent = `All (${count})`;
+  }
+
   async function showStudySetup() {
     setNav('nav-study');
     setView('study-setup');
-    const cards = await DB.getAllCards();
-    const tags = [...new Set(cards.flatMap(c => c.tags))].sort();
+    allCardsCache = await DB.getAllCards();
+    const tags = [...new Set(allCardsCache.flatMap(c => c.tags))].sort();
     const tagSelect = document.getElementById('tag-select');
     tagSelect.innerHTML = tags.map(t => `<option value="${t}">${t}</option>`).join('');
-    document.getElementById('study-card-count').textContent = `${cards.length} cards available`;
 
-    const total = cards.length;
-    document.getElementById('size-all-label').textContent = `All (${total})`;
+    tagSelect.onchange = updateAllLabel;
+    document.getElementById('weak-toggle').onchange = updateAllLabel;
+
+    await updateAllLabel();
   }
 
   function showConjugateSetup() {
