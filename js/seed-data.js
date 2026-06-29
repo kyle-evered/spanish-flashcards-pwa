@@ -501,11 +501,179 @@ const SEED_CARDS = [
   { spanish: "hijastro",           english: "step-son",          tags: ["level2","family"] },
   { spanish: "hijastra",           english: "step-daughter",     tags: ["level2","family"] },
   { spanish: "los parientes",      english: "relatives",         tags: ["level2","family"] },
+
+  // ── La Comida — Carnes y Aves (Meat & Poultry) ───────────────────────
+  { spanish: "el ave",             english: "poultry",           tags: ["level2","food","meat"] },
+  { spanish: "el bistec",          english: "steak",             tags: ["level2","food","meat"] },
+  { spanish: "la carne",           english: "meat",              tags: ["level2","food","meat"] },
+  { spanish: "el cerdo",           english: "pork",              tags: ["level2","food","meat"] },
+  { spanish: "el puerco",          english: "pork",              tags: ["level2","food","meat"] },
+  { spanish: "el cordero",         english: "lamb",              tags: ["level2","food","meat"] },
+  { spanish: "la hamburguesa",     english: "hamburger",         tags: ["level2","food","meat"] },
+  { spanish: "el huevo",           english: "egg",               tags: ["level2","food","meat"] },
+  { spanish: "el jamón",           english: "ham",               tags: ["level2","food","meat"] },
+  { spanish: "el pato",            english: "duck",              tags: ["level2","food","meat"] },
+  { spanish: "el pavo",            english: "turkey",            tags: ["level2","food","meat"] },
+  { spanish: "el pollo",           english: "chicken",           tags: ["level2","food","meat"] },
+  { spanish: "la res",             english: "beef",              tags: ["level2","food","meat"] },
+  { spanish: "el tocino",          english: "bacon",             tags: ["level2","food","meat"] },
+  { spanish: "la tocineta",        english: "bacon",             tags: ["level2","food","meat"] },
+
+  // ── La Comida — Pescado y Mariscos (Seafood) ─────────────────────────
+  { spanish: "el atún",            english: "tuna",              tags: ["level2","food","seafood"] },
+  { spanish: "el calamar",         english: "squid",             tags: ["level2","food","seafood"] },
+  { spanish: "los camarones",      english: "shrimp",            tags: ["level2","food","seafood"] },
+  { spanish: "el cangrejo",        english: "crab",              tags: ["level2","food","seafood"] },
+  { spanish: "la langosta",        english: "lobster",           tags: ["level2","food","seafood"] },
+  { spanish: "los mariscos",       english: "shellfish",         tags: ["level2","food","seafood"] },
+  { spanish: "el pescado",         english: "fish",              tags: ["level2","food","seafood"] },
+
+  // ── La Comida — Frutas (Fruit) ────────────────────────────────────────
+  { spanish: "el durazno",         english: "peach",             tags: ["level2","food","fruit"] },
+  { spanish: "el melocotón",       english: "peach",             tags: ["level2","food","fruit"] },
+  { spanish: "la fresa",           english: "strawberry",        tags: ["level2","food","fruit"] },
+  { spanish: "el mango",           english: "mango",             tags: ["level2","food","fruit"] },
+  { spanish: "la manzana",         english: "apple",             tags: ["level2","food","fruit"] },
+  { spanish: "el melón",           english: "cantaloupe",        tags: ["level2","food","fruit"] },
+  { spanish: "la naranja",         english: "orange",            tags: ["level2","food","fruit"] },
+  { spanish: "la pera",            english: "pear",              tags: ["level2","food","fruit"] },
+  { spanish: "el plátano",         english: "banana",            tags: ["level2","food","fruit"] },
+  { spanish: "la sandía",          english: "watermelon",        tags: ["level2","food","fruit"] },
+  { spanish: "la toronja",         english: "grapefruit",        tags: ["level2","food","fruit"] },
+  { spanish: "las uvas",           english: "grapes",            tags: ["level2","food","fruit"] },
+
+  // ── La Comida — Verduras (Vegetables) ────────────────────────────────
+  { spanish: "el aguacate",        english: "avocado",           tags: ["level2","food","vegetable"] },
+  { spanish: "el ajo",             english: "garlic",            tags: ["level2","food","vegetable"] },
+  { spanish: "el apio",            english: "celery",            tags: ["level2","food","vegetable"] },
+  { spanish: "la berenjena",       english: "eggplant",          tags: ["level2","food","vegetable"] },
+  { spanish: "el brócoli",         english: "broccoli",          tags: ["level2","food","vegetable"] },
+  { spanish: "la calabacita",      english: "zucchini",          tags: ["level2","food","vegetable"] },
+  { spanish: "la cebolla",         english: "onion",             tags: ["level2","food","vegetable"] },
+  { spanish: "el chile",           english: "chili pepper",      tags: ["level2","food","vegetable"] },
+  { spanish: "los chícharos",      english: "peas",              tags: ["level2","food","vegetable"] },
+  { spanish: "los champiñones",    english: "mushrooms",         tags: ["level2","food","vegetable"] },
+  { spanish: "la coliflor",        english: "cauliflower",       tags: ["level2","food","vegetable"] },
+  { spanish: "la col",             english: "cabbage",           tags: ["level2","food","vegetable"] },
+  { spanish: "los ejotes",         english: "green beans",       tags: ["level2","food","vegetable"] },
+  { spanish: "las espinacas",      english: "spinach",           tags: ["level2","food","vegetable"] },
+  { spanish: "la lechuga",         english: "lettuce",           tags: ["level2","food","vegetable"] },
+  { spanish: "el maíz",            english: "corn",              tags: ["level2","food","vegetable"] },
+  { spanish: "la papa",            english: "potato",            tags: ["level2","food","vegetable"] },
+  { spanish: "el pepino",          english: "cucumber",          tags: ["level2","food","vegetable"] },
+  { spanish: "el tomate",          english: "tomato",            tags: ["level2","food","vegetable"] },
+  { spanish: "el jitomate",        english: "tomato",            tags: ["level2","food","vegetable"] },
+  { spanish: "la zanahoria",       english: "carrot",            tags: ["level2","food","vegetable"] },
+
+  // ── La Comida — Productos Lácteos (Dairy) ────────────────────────────
+  { spanish: "la crema",           english: "cream",             tags: ["level2","food","dairy"] },
+  { spanish: "la leche",           english: "milk",              tags: ["level2","food","dairy"] },
+  { spanish: "el queso",           english: "cheese",            tags: ["level2","food","dairy"] },
+  { spanish: "el yogurt",          english: "yogurt",            tags: ["level2","food","dairy"] },
+  { spanish: "la mantequilla",     english: "butter",            tags: ["level2","food","dairy"] },
+
+  // ── La Comida — Bebidas (Drinks) ──────────────────────────────────────
+  { spanish: "el agua",            english: "water",             tags: ["level2","food","drink"] },
+  { spanish: "el café",            english: "coffee",            tags: ["level2","food","drink"] },
+  { spanish: "la cerveza",         english: "beer",              tags: ["level2","food","drink"] },
+  { spanish: "el jugo",            english: "juice",             tags: ["level2","food","drink"] },
+  { spanish: "el refresco",        english: "soft drink",        tags: ["level2","food","drink"] },
+  { spanish: "el té",              english: "tea",               tags: ["level2","food","drink"] },
+  { spanish: "el vino",            english: "wine",              tags: ["level2","food","drink"] },
+
+  // ── La Comida — Postres (Desserts) ────────────────────────────────────
+  { spanish: "el dulce",           english: "candy; sweet",      tags: ["level2","food","dessert"] },
+  { spanish: "la galleta",         english: "cookie",            tags: ["level2","food","dessert"] },
+  { spanish: "el helado",          english: "ice cream",         tags: ["level2","food","dessert"] },
+  { spanish: "el pay",             english: "pie",               tags: ["level2","food","dessert"] },
+  { spanish: "el pastel",          english: "cake",              tags: ["level2","food","dessert"] },
+
+  // ── La Comida — Otras Cosas Importantes (Pantry) ─────────────────────
+  { spanish: "el aceite",          english: "oil",               tags: ["level2","food","pantry"] },
+  { spanish: "el aceite de oliva", english: "olive oil",         tags: ["level2","food","pantry"] },
+  { spanish: "el arroz",           english: "rice",              tags: ["level2","food","pantry"] },
+  { spanish: "el azúcar",          english: "sugar",             tags: ["level2","food","pantry"] },
+  { spanish: "los frijoles",       english: "beans",             tags: ["level2","food","pantry"] },
+  { spanish: "la harina",          english: "flour",             tags: ["level2","food","pantry"] },
+  { spanish: "la mayonesa",        english: "mayonnaise",        tags: ["level2","food","pantry"] },
+  { spanish: "la miel",            english: "honey",             tags: ["level2","food","pantry"] },
+  { spanish: "las nueces",         english: "nuts",              tags: ["level2","food","pantry"] },
+  { spanish: "el pan",             english: "bread",             tags: ["level2","food","pantry"] },
+  { spanish: "la pimienta",        english: "pepper",            tags: ["level2","food","pantry"] },
+  { spanish: "la sal",             english: "salt",              tags: ["level2","food","pantry"] },
+
+  // ── Frases Preposicionales (Prepositional Phrases) ────────────────────
+  { spanish: "a",                  english: "to",                tags: ["level2","preposition"] },
+  { spanish: "a la derecha de",    english: "to the right of",   tags: ["level2","preposition"] },
+  { spanish: "a la izquierda de",  english: "to the left of",    tags: ["level2","preposition"] },
+  { spanish: "arriba de",          english: "above",             tags: ["level2","preposition"] },
+  { spanish: "abajo de",           english: "under",             tags: ["level2","preposition"] },
+  { spanish: "debajo de",          english: "under; below",      tags: ["level2","preposition"] },
+  { spanish: "al lado de",         english: "next to; beside",   tags: ["level2","preposition"] },
+  { spanish: "junto a",            english: "next to",           tags: ["level2","preposition"] },
+  { spanish: "atrás de",           english: "behind",            tags: ["level2","preposition"] },
+  { spanish: "detrás de",          english: "behind",            tags: ["level2","preposition"] },
+  { spanish: "cerca de",           english: "near",              tags: ["level2","preposition"] },
+  { spanish: "dentro de",          english: "inside of",         tags: ["level2","preposition"] },
+  { spanish: "en",                 english: "in; on; at",        tags: ["level2","preposition"] },
+  { spanish: "encima de",          english: "on top of",         tags: ["level2","preposition"] },
+  { spanish: "sobre",              english: "on",                tags: ["level2","preposition"] },
+  { spanish: "enfrente de",        english: "facing; across from; in front of", tags: ["level2","preposition"] },
+  { spanish: "entre",              english: "between",           tags: ["level2","preposition"] },
+  { spanish: "fuera de",           english: "outside of",        tags: ["level2","preposition"] },
+  { spanish: "lejos de",           english: "far from",          tags: ["level2","preposition"] },
+
+  // ── El Clima — Estaciones (Seasons) ──────────────────────────────────
+  { spanish: "la primavera",       english: "spring",            tags: ["level2","weather","season"] },
+  { spanish: "el verano",          english: "summer",            tags: ["level2","weather","season"] },
+  { spanish: "el otoño",           english: "fall",              tags: ["level2","weather","season"] },
+  { spanish: "el invierno",        english: "winter",            tags: ["level2","weather","season"] },
+
+  // ── El Clima — Expresiones con Hacer ─────────────────────────────────
+  { spanish: "hace fresco",        english: "it's cool",         tags: ["level2","weather"] },
+  { spanish: "hace frío",          english: "it's cold",         tags: ["level2","weather"] },
+  { spanish: "hace calor",         english: "it's hot",          tags: ["level2","weather"] },
+  { spanish: "hace buen tiempo",   english: "it's a nice day",   tags: ["level2","weather"] },
+  { spanish: "hace mal tiempo",    english: "it's not a nice day", tags: ["level2","weather"] },
+  { spanish: "hace viento",        english: "it's windy",        tags: ["level2","weather"] },
+  { spanish: "hace sol",           english: "it's sunny",        tags: ["level2","weather"] },
+
+  // ── El Clima — Expresiones con Estar ─────────────────────────────────
+  { spanish: "está lloviendo",     english: "it's raining",      tags: ["level2","weather"] },
+  { spanish: "está nevando",       english: "it's snowing",      tags: ["level2","weather"] },
+  { spanish: "está despejado",     english: "the sky is clear",  tags: ["level2","weather"] },
+  { spanish: "está nublado",       english: "it's cloudy",       tags: ["level2","weather"] },
+  { spanish: "está parcialmente nublado", english: "it's partly cloudy", tags: ["level2","weather"] },
+  { spanish: "está soleado",       english: "it's sunny",        tags: ["level2","weather"] },
+
+  // ── El Clima — Tiempo Futuro (Future Weather) ─────────────────────────
+  { spanish: "va a llover",        english: "it's going to rain",    tags: ["level2","weather"] },
+  { spanish: "va a nevar",         english: "it's going to snow",    tags: ["level2","weather"] },
+  { spanish: "va a hacer buen tiempo", english: "it's going to be a nice day", tags: ["level2","weather"] },
+  { spanish: "va a hacer frío",    english: "it's going to be cold", tags: ["level2","weather"] },
+
+  // ── El Clima — Clima Extremo (Extreme Weather) ────────────────────────
+  { spanish: "el granizo",         english: "hail",              tags: ["level2","weather","extreme weather"] },
+  { spanish: "el huracán",         english: "hurricane",         tags: ["level2","weather","extreme weather"] },
+  { spanish: "la inundación",      english: "flood",             tags: ["level2","weather","extreme weather"] },
+  { spanish: "el relámpago",       english: "lightning",         tags: ["level2","weather","extreme weather"] },
+  { spanish: "la tormenta",        english: "storm",             tags: ["level2","weather","extreme weather"] },
+  { spanish: "la tormenta de nieve", english: "snow storm",      tags: ["level2","weather","extreme weather"] },
+  { spanish: "el tornado",         english: "tornado",           tags: ["level2","weather","extreme weather"] },
+  { spanish: "el trueno",          english: "thunder",           tags: ["level2","weather","extreme weather"] },
+  { spanish: "Está granizando",    english: "it is hailing",     tags: ["level2","weather","extreme weather"] },
+  { spanish: "Hay un huracán",     english: "there is a hurricane",   tags: ["level2","weather","extreme weather"] },
+  { spanish: "Hay una inundación", english: "there is a flood",       tags: ["level2","weather","extreme weather"] },
+  { spanish: "Hay relámpagos",     english: "there is lightning",     tags: ["level2","weather","extreme weather"] },
+  { spanish: "Hay una tormenta",   english: "there is a storm",       tags: ["level2","weather","extreme weather"] },
+  { spanish: "Hay una tormenta de nieve", english: "there is a snow storm", tags: ["level2","weather","extreme weather"] },
+  { spanish: "Hay un tornado",     english: "there is a tornado",     tags: ["level2","weather","extreme weather"] },
+  { spanish: "Hay truenos",        english: "there is thunder",       tags: ["level2","weather","extreme weather"] },
 ];
 
 async function seedIfEmpty() {
   const seeded = await DB.getSetting('seeded');
-  if (seeded === 'v10') return;
+  if (seeded === 'v11') return;
 
   const existing = await DB.getAllCards();
   const existingBySpanish = new Map(existing.map(c => [c.spanish.toLowerCase(), c]));
@@ -520,8 +688,8 @@ async function seedIfEmpty() {
     }
   }
 
-  await DB.setSetting('seeded', 'v10');
-  console.log('Seed v10 complete.');
+  await DB.setSetting('seeded', 'v11');
+  console.log('Seed v11 complete.');
 }
 
 window.seedIfEmpty = seedIfEmpty;
