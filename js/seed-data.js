@@ -669,11 +669,91 @@ const SEED_CARDS = [
   { spanish: "Hay una tormenta de nieve", english: "there is a snow storm", tags: ["level2","weather","extreme weather"] },
   { spanish: "Hay un tornado",     english: "there is a tornado",     tags: ["level2","weather","extreme weather"] },
   { spanish: "Hay truenos",        english: "there is thunder",       tags: ["level2","weather","extreme weather"] },
+
+  // ── Verbos como Gustar (Gustar-like Verbs) ────────────────────────────
+  { spanish: "caer bien",          english: "to like someone",           tags: ["level2","verb","gustar"] },
+  { spanish: "caer mal",           english: "to dislike someone",        tags: ["level2","verb","gustar"] },
+  { spanish: "dar igual",          english: "to not care either way",    tags: ["level2","verb","gustar"] },
+  { spanish: "doler",              english: "to hurt",                   tags: ["level2","verb","gustar"] },
+  { spanish: "encantar",           english: "to love (something)",       tags: ["level2","verb","gustar"] },
+  { spanish: "fascinar",           english: "to fascinate",              tags: ["level2","verb","gustar"] },
+  { spanish: "fastidiar",          english: "to annoy",                  tags: ["level2","verb","gustar"] },
+  { spanish: "hacer falta",        english: "to need; to lack",          tags: ["level2","verb","gustar"] },
+  { spanish: "importar",           english: "to be important to",        tags: ["level2","verb","gustar"] },
+  { spanish: "interesar",          english: "to interest",               tags: ["level2","verb","gustar"] },
+  { spanish: "molestar",           english: "to bother",                 tags: ["level2","verb","gustar"] },
+  { spanish: "parecer",            english: "to seem",                   tags: ["level2","verb","gustar"] },
+  { spanish: "preocupar",          english: "to worry",                  tags: ["level2","verb","gustar"] },
+  { spanish: "quedar",             english: "to have (any amount) left", tags: ["level2","verb","gustar"] },
+  { spanish: "quedar bien",        english: "to look good on someone (clothing)", tags: ["level2","verb","gustar"] },
+  { spanish: "quedar mal",         english: "to look bad on someone (clothing)",  tags: ["level2","verb","gustar"] },
+
+  // ── Verbos Reflexivos (Reflexive Verbs) ───────────────────────────────
+  { spanish: "acordarse (de)",     english: "to remember",               tags: ["level2","verb","reflexive"] },
+  { spanish: "acostarse",          english: "to go to bed",              tags: ["level2","verb","reflexive"] },
+  { spanish: "afeitarse",          english: "to shave",                  tags: ["level2","verb","reflexive"] },
+  { spanish: "alegrarse",          english: "to be happy; to become glad", tags: ["level2","verb","reflexive"] },
+  { spanish: "arrepentirse",       english: "to repent",                 tags: ["level2","verb","reflexive"] },
+  { spanish: "bañarse",            english: "to bathe",                  tags: ["level2","verb","reflexive"] },
+  { spanish: "cansarse",           english: "to get tired",              tags: ["level2","verb","reflexive"] },
+  { spanish: "caerse",             english: "to fall down",              tags: ["level2","verb","reflexive"] },
+  { spanish: "cepillarse",         english: "to brush",                  tags: ["level2","verb","reflexive"] },
+  { spanish: "cortarse el pelo",   english: "to get a hair cut",         tags: ["level2","verb","reflexive"] },
+  { spanish: "darse prisa",        english: "to hurry",                  tags: ["level2","verb","reflexive"] },
+  { spanish: "ducharse",           english: "to shower",                 tags: ["level2","verb","reflexive"] },
+  { spanish: "despertarse",        english: "to wake up",                tags: ["level2","verb","reflexive"] },
+  { spanish: "desvestirse",        english: "to undress",                tags: ["level2","verb","reflexive"] },
+  { spanish: "divertirse",         english: "to have fun",               tags: ["level2","verb","reflexive"] },
+  { spanish: "dormirse",           english: "to fall asleep",            tags: ["level2","verb","reflexive"] },
+  { spanish: "enojarse",           english: "to get angry",              tags: ["level2","verb","reflexive"] },
+  { spanish: "enfadarse",          english: "to get angry",              tags: ["level2","verb","reflexive"] },
+  { spanish: "irse",               english: "to leave",                  tags: ["level2","verb","reflexive"] },
+  { spanish: "lavarse",            english: "to wash (oneself)",         tags: ["level2","verb","reflexive"] },
+  { spanish: "levantarse",         english: "to get up",                 tags: ["level2","verb","reflexive"] },
+  { spanish: "maquillarse",        english: "to put on make-up",         tags: ["level2","verb","reflexive"] },
+  { spanish: "pararse",            english: "to stand up",               tags: ["level2","verb","reflexive"] },
+  { spanish: "peinarse",           english: "to comb",                   tags: ["level2","verb","reflexive"] },
+  { spanish: "ponerse",            english: "to put on (clothing)",      tags: ["level2","verb","reflexive"] },
+  { spanish: "preocuparse",        english: "to be worried",             tags: ["level2","verb","reflexive"] },
+  { spanish: "quedarse",           english: "to stay; to remain",        tags: ["level2","verb","reflexive"] },
+  { spanish: "quejarse",           english: "to complain",               tags: ["level2","verb","reflexive"] },
+  { spanish: "quitarse",           english: "to take off (clothing)",    tags: ["level2","verb","reflexive"] },
+  { spanish: "reírse",             english: "to laugh",                  tags: ["level2","verb","reflexive"] },
+  { spanish: "secarse",            english: "to dry (oneself)",          tags: ["level2","verb","reflexive"] },
+  { spanish: "sentarse",           english: "to sit down",               tags: ["level2","verb","reflexive"] },
+  { spanish: "sentirse",           english: "to feel",                   tags: ["level2","verb","reflexive"] },
+  { spanish: "sonreírse",          english: "to smile",                  tags: ["level2","verb","reflexive"] },
+  { spanish: "vestirse",           english: "to get dressed",            tags: ["level2","verb","reflexive"] },
+
+  // ── Los Pasatiempos (Hobbies) — III-19 ───────────────────────────────
+  { spanish: "andar en bicicleta", english: "to bike",                   tags: ["level3","hobby"] },
+  { spanish: "bordar",             english: "to do needlepoint",         tags: ["level3","hobby"] },
+  { spanish: "acampar",            english: "to camp",                   tags: ["level3","hobby"] },
+  { spanish: "coleccionar",        english: "to collect",                tags: ["level3","hobby"] },
+  { spanish: "coser",              english: "to sew",                    tags: ["level3","hobby"] },
+  { spanish: "dibujar",            english: "to draw",                   tags: ["level3","hobby"] },
+  { spanish: "hacer ejercicio",    english: "to exercise",               tags: ["level3","hobby"] },
+  { spanish: "jugar al golf",      english: "to play golf",              tags: ["level3","hobby"] },
+  { spanish: "jugar al tenis",     english: "to play tennis",            tags: ["level3","hobby"] },
+  { spanish: "jugar cartas",       english: "to play cards",             tags: ["level3","hobby"] },
+  { spanish: "navegar en internet",english: "to surf the net",           tags: ["level3","hobby"] },
+  { spanish: "pasear",             english: "to go for a walk",          tags: ["level3","hobby"] },
+  { spanish: "pintar",             english: "to paint",                  tags: ["level3","hobby"] },
+  { spanish: "sacar fotos",        english: "to take photos",            tags: ["level3","hobby"] },
+  { spanish: "tejer",              english: "to knit",                   tags: ["level3","hobby"] },
+  { spanish: "tocar un instrumento", english: "to play an instrument",   tags: ["level3","hobby"] },
+  { spanish: "ver la televisión",  english: "to watch television",       tags: ["level3","hobby"] },
+  { spanish: "ir a acampar",       english: "to go camping",             tags: ["level3","hobby"] },
+  { spanish: "ir a la playa",      english: "to go to the beach",        tags: ["level3","hobby"] },
+  { spanish: "ir al cine",         english: "to go to the movies",       tags: ["level3","hobby"] },
+  { spanish: "ir de compras",      english: "to go shopping",            tags: ["level3","hobby"] },
+  { spanish: "ir de excursión",    english: "to go hiking",              tags: ["level3","hobby"] },
+  { spanish: "ir de pesca",        english: "to go fishing",             tags: ["level3","hobby"] },
 ];
 
 async function seedIfEmpty() {
   const seeded = await DB.getSetting('seeded');
-  if (seeded === 'v11') return;
+  if (seeded === 'v12') return;
 
   const existing = await DB.getAllCards();
   const existingBySpanish = new Map(existing.map(c => [c.spanish.toLowerCase(), c]));
@@ -688,8 +768,8 @@ async function seedIfEmpty() {
     }
   }
 
-  await DB.setSetting('seeded', 'v11');
-  console.log('Seed v11 complete.');
+  await DB.setSetting('seeded', 'v12');
+  console.log('Seed v12 complete.');
 }
 
 window.seedIfEmpty = seedIfEmpty;
